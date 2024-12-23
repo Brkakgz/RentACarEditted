@@ -9,6 +9,16 @@ public class CarDTO {
     private boolean available; // Getter ve Setter gerekiyor
     private String imageUrl; // Getter ve Setter gerekiyor
 
+    public CarDTO( String brand, String model, int year, String color, double dailyPrice, boolean available, String imageUrl) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.color = color;
+        this.dailyPrice = dailyPrice;
+        this.available = available;
+        this.imageUrl = imageUrl;
+    }
+
     // Getters ve Setters
     public String getBrand() {
         return brand;

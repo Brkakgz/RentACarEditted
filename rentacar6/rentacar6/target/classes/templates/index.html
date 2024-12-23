@@ -30,38 +30,67 @@
         </div>
     </section>
 
+    <!-- Filter Section -->
+    <section class="filter-container">
+        <h2>Filter Cars</h2>
+        <label for="brand">Brand:</label>
+        <input type="text" id="brand" placeholder="e.g. Toyota">
+
+        <label for="color">Color:</label>
+        <input type="text" id="color" placeholder="e.g. Black">
+
+        <label for="minPrice">Min Price:</label>
+        <input type="number" id="minPrice" placeholder="e.g. 100">
+
+        <label for="maxPrice">Max Price:</label>
+        <input type="number" id="maxPrice" placeholder="e.g. 500">
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" placeholder="e.g. 2020">
+
+        <button onclick="applyFilters()">Apply Filters</button>
+    </section>
+
     <!-- Cars Section -->
     <section id="cars" class="section">
         <div class="container">
             <h2>Available Cars</h2>
-            <div id="loading-spinner" class="spinner" style="display: none;">
-                <i class="fas fa-spinner fa-spin"></i> Loading cars...
-            </div>
-            <div id="car-categories" class="categories">
-                <!-- Dynamic categories will be added here -->
-            </div>
             <div id="car-list" class="car-grid">
-                <!-- Cars will be dynamically loaded here -->
+                <!-- Dynamic car list -->
+                <div class="car-card">
+                    <img src="/uploads/cars/Toyota-Corolla-2020-Red.jpg" alt="Toyota Corolla 2020" class="car-image">
+                    <div class="car-details">
+                        <h3>Toyota Corolla</h3>
+                        <p>Year: 2020</p>
+                        <p>Color: Red</p>
+                        <p>Price: $50/day</p>
+                        <button class="btn rent-btn">Rent This Car</button>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <img src="/uploads/cars/Honda-Civic-2019-Blue.jpg" alt="Honda Civic 2019" class="car-image">
+                    <div class="car-details">
+                        <h3>Honda Civic</h3>
+                        <p>Year: 2019</p>
+                        <p>Color: Blue</p>
+                        <p>Price: $45/day</p>
+                        <button class="btn rent-btn">Rent This Car</button>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <img src="/uploads/cars/Ford-Focus-2021-Black.jpg" alt="Ford Focus 2021" class="car-image">
+                    <div class="car-details">
+                        <h3>Ford Focus</h3>
+                        <p>Year: 2021</p>
+                        <p>Color: Black</p>
+                        <p>Price: $60/day</p>
+                        <button class="btn rent-btn">Rent This Car</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 </main>
-
-<!-- Kiralama Modal -->
-<div id="car-details-modal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h3 id="modal-car-title">Car Details</h3>
-        <p id="modal-car-description"></p>
-        <p><strong>Daily Price:</strong> <span id="modal-car-price"></span></p>
-        <label for="rent-date">Rent Date</label>
-        <input type="date" id="rent-date" required>
-        <label for="return-date">Return Date</label>
-        <input type="date" id="return-date" required>
-        <p><strong>Total Price:</strong> <span id="total-price">$0</span></p>
-        <button id="modal-rent-button" class="btn">Rent This Car</button>
-    </div>
-</div>
 
 <footer>
     <div class="container">

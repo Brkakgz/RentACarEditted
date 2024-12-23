@@ -76,6 +76,9 @@ async function loadCars() {
         const response = await fetch('/api/cars');
         const cars = await response.json();
 
+        if (cars.length === 0) {
+            carList.innerHTML = '<p>No cars available at the moment.</p>';
+        }
         carList.innerHTML = cars.map(car => `
             <div class="car-card">
                 <img 
@@ -121,3 +124,54 @@ function attachRentButtons() {
 loadCars();
 attachDateChangeListeners();
 attachFormSubmissionListener();
+
+
+//Filtreleme işlevi
+function applyFilters() {
+    const brand = document.getElementById('brand').value;
+    const color = document.getElementById('color').value;
+    const minPrice = document.getElementById('minPrice').value;
+    const maxPrice = document.getElementById('maxPrice').value;
+    const year = document.getElementById('year').value;
+
+
+    if (minPrice < 0 || maxPrice < 0) {
+        alert('Price cannot be negative.');
+        return;
+    }
+
+    if (year < 1900) {
+        alert('Year cannot be less than 1900.');
+        return;
+    }
+
+    // Create query parameters
+    const queryParams = new URLSearchParams({
+        brand: brand || undefined,
+        color: color || undefined,
+        minPrice: minPrice || undefined,
+        maxPrice: maxPrice || undefined,
+        year: year || undefined
+    }).toString();
+
+    // Fetch filtered cars
+    fetch(`/api/cars?${queryParams}`)
+        .then(response => response.json())
+        .then(cars => {
+            const carList = document.getElementById('car-list');
+            carList.innerHTML = ''; // Clear previous results
+            cars.forEach(car => {
+                const carItem = document.createElement('div');
+                carItem.classList.add('car-item');
+                carItem.innerHTML = `
+                    <h3>${car.brand} ${car.model}</h3>
+                    <p>Color: ${car.color}</p>
+                    <p>Year: ${car.year}</p>
+                    <p>Daily Price: ${car.dailyPrice}</p>
+                `;
+                carList.appendChild(carItem);
+            });
+        });
+}
+
+

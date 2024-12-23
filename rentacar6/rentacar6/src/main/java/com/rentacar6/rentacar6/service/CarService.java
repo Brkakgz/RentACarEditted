@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CarService {
@@ -55,5 +56,26 @@ public class CarService {
         Car car = getCarById(id);
         car.setAvailable(available);
         return carRepository.save(car);
+    }
+
+    // Yeni filtreleme metodu
+    public List<CarDTO> getFilteredCars(String brand, String color, Double minPrice, Double maxPrice, Integer year) {
+        List<Car> cars = carRepository.findAll(); // Tüm araçları getir
+        return cars.stream()
+                .filter(car -> (brand == null || car.getBrand().equalsIgnoreCase(brand)))
+                .filter(car -> (color == null || car.getColor().equalsIgnoreCase(color)))
+                .filter(car -> (minPrice == null || car.getDailyPrice() >= minPrice))
+                .filter(car -> (maxPrice == null || car.getDailyPrice() <= maxPrice))
+                .filter(car -> (year == null || car.getYear() == year)) // int tipi için == kullanılır
+                .map(car -> new CarDTO(
+                        car.getBrand(),
+                        car.getModel(),
+                        car.getYear(),
+                        car.getColor(),
+                        car.getDailyPrice(),
+                        car.isAvailable(),
+                        car.getImageUrl()
+                )) // DTO dönüştürmesi yapıldı
+                .collect(Collectors.toList());
     }
 }

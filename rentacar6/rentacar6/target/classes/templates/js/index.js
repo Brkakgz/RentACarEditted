@@ -121,3 +121,41 @@ function attachRentButtons() {
 loadCars();
 attachDateChangeListeners();
 attachFormSubmissionListener();
+
+
+//Filtreleme işlevi
+function applyFilters() {
+    const brand = document.getElementById('brand').value;
+    const color = document.getElementById('color').value;
+    const minPrice = document.getElementById('minPrice').value;
+    const maxPrice = document.getElementById('maxPrice').value;
+    const year = document.getElementById('year').value;
+
+    // Create query parameters
+    const queryParams = new URLSearchParams({
+        brand: brand || undefined,
+        color: color || undefined,
+        minPrice: minPrice || undefined,
+        maxPrice: maxPrice || undefined,
+        year: year || undefined
+    }).toString();
+
+    // Fetch filtered cars
+    fetch(`/api/cars?${queryParams}`)
+        .then(response => response.json())
+        .then(cars => {
+            const carList = document.getElementById('car-list');
+            carList.innerHTML = ''; // Clear previous results
+            cars.forEach(car => {
+                const carItem = document.createElement('div');
+                carItem.classList.add('car-item');
+                carItem.innerHTML = `
+                    <h3>${car.brand} ${car.model}</h3>
+                    <p>Color: ${car.color}</p>
+                    <p>Year: ${car.year}</p>
+                    <p>Daily Price: ${car.dailyPrice}</p>
+                `;
+                carList.appendChild(carItem);
+            });
+        });
+}
