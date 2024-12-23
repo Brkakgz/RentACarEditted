@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        if (!localStorage.getItem('authToken')) {
+            alert('You must login to access this page.');
+            window.location.href = '/login.html';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a id="logout" href="#">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <section id="admin-content" class="content-container">
+            <h2>Manage Users and Cars</h2>
+            <div class="admin-actions">
+                <button id="view-users-btn" class="btn">View Users</button>
+                <button id="view-rented-cars-btn" class="btn">View Rented Cars</button>
+                <button id="add-car-btn" class="btn">Add New Car</button>
+            </div>
+            <div id="admin-display-area" class="table-container"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Rent A Car</p>
+    </footer>
+    <script src="js/admin.js"></script>
+</body>
+</html>
