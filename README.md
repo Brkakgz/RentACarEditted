@@ -9,6 +9,7 @@
 **Araç Kiralama**: Tarih aralığı seçerek, toplam fiyat bilgisiyle birlikte istediğiniz aracı kiralayabilirsiniz. Kiralama sonrası araç stoktan düşer.  
 **Sipariş Geçmişi**: Daha önce kiraladığınız araçların detaylarını bir sayfa üzerinden görebilirsiniz.  
 **Otomatik Stok Yönetimi**: Stok 0 olduğunda araç listeden kaldırılır, stok arttığında tekrar görüntülenebilir hale gelir.  
+**Araç Filtreleme İşlemi**: Araçları özelliklerine göre filtreleyebileceğiniz bir filtreleme aracı bulunuyor.  
 ## Admin İşlevleri
 **Araç Yönetimi**: Yeni araç ekleyebilir, mevcut araçları güncelleyebilir veya silebilirsiniz. Araçların özelliklerini (görünürlük, renk, fiyat vb.) düzenleyebilirsiniz.  
 **Kiralama Geçmişi Görüntüleme**: Bütün kullanıcıların kiralama geçmişine erişerek detaylı inceleme yapabilirsiniz.  
